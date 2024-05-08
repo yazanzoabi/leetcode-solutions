@@ -1,27 +1,18 @@
 def two_sum(nums, target):
-    # Sort the array
+    nums = [(num, i) for i, num in enumerate(nums)]
     nums.sort()
+    print(nums)
+    l, r = 0, len(nums) - 1
+    while l < r:
+        sum = nums[l][0] + nums[r][0]
+        if sum == target:
+            return [nums[l][1], nums[r][1]]
+        elif sum > target:
+            r -= 1
+            continue
+        l += 1
     
-    # Initialize two pointers
-    left = 0
-    right = len(nums) - 1
-    
-    while left < right:
-        # Calculate the sum of the current pair
-        current_sum = nums[left] + nums[right]
-        
-        if current_sum == target:
-            # Return the indices of the two numbers
-            return [left, right]
-        elif current_sum < target:
-            # Move the left pointer to the right
-            left += 1
-        else:
-            # Move the right pointer to the left
-            right -= 1
-    
-    # If no pair is found, return an empty list
-    return []
+    return None
 
 # Example usage
 nums = [2, 7, 11, 15]
